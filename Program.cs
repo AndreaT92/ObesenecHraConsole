@@ -5,6 +5,8 @@
         static void Main(string[] args)
         {
             Slovo slovo = new Slovo();
+
+            // SpustSe - instanci hrace, slova a rozjede se to ?
             slovo.VymysliNoveSlovo();
             int pocetPismen = slovo.PocetPismen();
             Console.WriteLine($"Vítám tě u hry Oběšenec. Myslím si slovo. Hádej počet písmen: {pocetPismen}");

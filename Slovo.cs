@@ -8,7 +8,7 @@ namespace Obesenec
 {
     internal class Slovo
     {
-        private string[] seznamSlov = new string[] {"prase", "kočka", "vlak", "program", "víno", "počítač"};
+        private string[] seznamSlov = new string[] {"prase", "kočka", "vlak", "program", "víno", "počítač"}; // seznam slov, ze kterých vybírá
         private string hadaneSlovo;
         private char[] castecneOdhaleneSlovo;
 
@@ -27,10 +27,23 @@ namespace Obesenec
         { 
             return hadaneSlovo.Length; 
         }
-
+        //metoda bool JePismenoObsazeneVeSlove par pismeno
+        //metoda na ReadKey?
+        
         public void VratSlovo()
         {
-            //metoda na ReadKey + cyklus a zobrazovani uhadnutych pismen do slova
+            string slovo = hadaneSlovo;
+            char [] poleZnakuSlova = slovo.ToArray();
+            char hadanePismeno;
+            string castecneOdhaleneSlovo = "";
+            for (int i = 0; i < poleZnakuSlova.Length; i++)
+            {
+                if (hadanePismeno == poleZnakuSlova[i])
+                {
+                    castecneOdhaleneSlovo += hadanePismeno();
+                }
+            }
+            // vrat castecneodhaleneslovo (-----) a postupne se to bude doplnovat pismenky
         }
         
     }
