@@ -4,13 +4,29 @@
     {
         static void Main(string[] args)
         {
-            Slovo slovo = new Slovo();
+            Slovo slovo = new Slovo(); // inicializace třídy slovo
+            Hrac hrac = new Hrac(5); // incializace třídy hráče s tím, že počet životů nastavíme na 5
 
-            // SpustSe - instanci hrace, slova a rozjede se to ?
-            slovo.VymysliNoveSlovo();
+            slovo.VymysliNoveSlovo(); 
             int pocetPismen = slovo.PocetPismen();
             Console.WriteLine($"Vítám tě u hry Oběšenec. Myslím si slovo. Hádej počet písmen: {pocetPismen}");
-            // cyklus dokud nebudou uhadnuta vsechna pismena
+
+            while (!hrac.JeKonecHry())
+            {
+                slovo.VratSlovo();
+                hrac.ZadejPismeno(slovo);
+
+                if (new string(slovo.VratCastecneOdhaleneSlovo()) == slovo.VratHadaneSlovo())
+                {
+                    Console.WriteLine($"Gratuluji, uhádl jsi slovo {slovo.VratHadaneSlovo()}!");
+                    break;
+                }
+            }
+
+            if (hrac.JeKonecHry())
+            {
+                Console.WriteLine($"Bohužel, vyčerpal jsi všechny životy. Správné slovo bylo: {slovo.VratHadaneSlovo()}");
+            }
         }
     }
 }

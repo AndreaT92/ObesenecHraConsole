@@ -1,50 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Obesenec
+﻿namespace Obesenec
 {
     internal class Slovo
     {
-        private string[] seznamSlov = new string[] {"prase", "kočka", "vlak", "program", "víno", "počítač"}; // seznam slov, ze kterých vybírá
+        private string[] seznamSlov = new string[] { "prase", "kočka", "vlak", "program", "víno", "počítač" };
         private string hadaneSlovo;
         private char[] castecneOdhaleneSlovo;
 
-        public Slovo()
-        {
-            VymysliNoveSlovo();
-        }
-
-        public void VymysliNoveSlovo ()
+        public void VymysliNoveSlovo() // výběr hádaného slova ze seznamu a nastavení místo písmen _ 
         {
             Random nahodnyVyber = new Random();
             hadaneSlovo = seznamSlov[nahodnyVyber.Next(0, seznamSlov.Length)];
+            castecneOdhaleneSlovo = new char[hadaneSlovo.Length];
+            for (int i = 0; i < hadaneSlovo.Length; i++)
+            {
+                castecneOdhaleneSlovo[i] = '_';
+            }
         }
 
-        public int PocetPismen()
-        { 
-            return hadaneSlovo.Length; 
-        }
-        //metoda bool JePismenoObsazeneVeSlove par pismeno
-        //metoda na ReadKey?
-        
-        public void VratSlovo()
+        public int PocetPismen() // metoda, která vrací počet písmen ve slově
         {
-            string slovo = hadaneSlovo;
-            char [] poleZnakuSlova = slovo.ToArray();
-            char hadanePismeno;
-            string castecneOdhaleneSlovo = "";
-            for (int i = 0; i < poleZnakuSlova.Length; i++)
+            return hadaneSlovo.Length;
+        }
+
+        public bool JePismenoObsazeneVeSlove(char pismeno) // bool na kontrolu písmena ve slově
+        {
+            bool obsahujePismeno = false;
+
+            for (int i = 0; i < hadaneSlovo.Length; i++)
             {
-                if (hadanePismeno == poleZnakuSlova[i])
+                if (hadaneSlovo[i] == pismeno)
                 {
-                    castecneOdhaleneSlovo += hadanePismeno();
+                    obsahujePismeno = true;
+                    castecneOdhaleneSlovo[i] = pismeno; // odhalí písmeno v částečně odhaleném slově
                 }
             }
-            // vrat castecneodhaleneslovo (-----) a postupne se to bude doplnovat pismenky
+
+            return obsahujePismeno;
         }
-        
+
+        public void VratSlovo() // metoda, která vypíše na consoli hádané slovo (____ nebo s částečně odhalenými písmeny)
+        {
+            Console.WriteLine("Hádané slovo: " + new string(castecneOdhaleneSlovo));
+        }
+
+        public char[] VratCastecneOdhaleneSlovo() // vrací částečně odhalené slovo
+        {
+            return castecneOdhaleneSlovo;
+        }
+
+        public string VratHadaneSlovo() // vrací hádané slovo
+        {
+            return hadaneSlovo;
+        }
     }
 }
+
