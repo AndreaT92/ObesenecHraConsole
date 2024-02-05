@@ -16,7 +16,7 @@
                 slovo.VratSlovo();
                 hrac.ZadejPismeno(slovo);
 
-                if (new string(slovo.VratCastecneOdhaleneSlovo()) == slovo.VratHadaneSlovo())
+                if (slovo.TrefilVsechny())
                 {
                     Console.WriteLine($"Gratuluji, uhádl jsi slovo {slovo.VratHadaneSlovo()}!");
                     break;

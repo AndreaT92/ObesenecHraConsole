@@ -52,6 +52,11 @@
         {
             return hadaneSlovo;
         }
+
+        public bool TrefilVsechny()
+        {
+            return hadaneSlovo == new string(castecneOdhaleneSlovo);
+        }
     }
 }
 
